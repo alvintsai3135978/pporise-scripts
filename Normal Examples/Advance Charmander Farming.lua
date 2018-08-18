@@ -3,12 +3,12 @@ author = "Tester"
 description = [[This script will catch shiny or rare Pokemon and will catch some speciic Pokemon with desired natures and ivs in Speciic map.]]
 
 mpaName = "Hellfire Cavern F2" -- Change map name as you want.
-X = 260 -- Choose a coordinate where people can't see you, choose big ammount like 150.
-Y = 260 -- Choose a coordiante where people can't see you, choose big ammount like 150.
+X = 260 -- Choose a coordinate where people can't see you, choose big amount like 150.
+Y = 260 -- Choose a coordinate where people can't see you, choose big amount like 150.
 pokecenter_Name = "Cherrygrove City Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
-weak_move = "Leer" -- 
+weak_move = "Leer" -- Change the move name with your first pokemon's weakest move.
 desiredNature = "Timid" -- Change your desired nature from here if you want only one Pokemon with desired nature.
-desired_ivs = "Speed" -- Chage to your desired Stat name here which you want to get the iffort value(iv).
+desired_ivs = "Speed" -- Change to your desired Stat name here which you want to get the Individual Value(IV).
 
 local catchList = 
 {
@@ -67,12 +67,9 @@ function PerFormActionsToGetOpponentIVS()
       		return weakAttack() or sendAnyPokemon() or run()
       	end
         return useItem("Ultra Ball") or useItem("Great Ball") or useItem("Poke Ball") or sendAnyPokemon()
-      else
-      	return run() or sendAnyPokemon() or attack()
       end
-    else
-    	return run() or sendAnyPokemon() or attack()
     end
+	return run() or sendAnyPokemon() or attack()
   else
     return useMove(weak_move) or weakAttack() or run() or sendAnyPokemon()
   end

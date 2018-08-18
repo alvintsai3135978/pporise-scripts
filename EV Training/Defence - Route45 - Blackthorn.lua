@@ -1,6 +1,6 @@
-name = "Level Up: Route 45"
+name = "Defence EV: Route 45 (near Blackthorn)"
 author = "Tester"
-description = [[This script will catch shiny or rare Pokemon and will Level up first Pokemon of your team in Route 45.]]
+description = [[This script will catch shiny or rare Pokemon and will train Defence EV of your first Pokemon of your team in Route 45.]]
 
 mpaName = "Route 45" -- Change map name as you want.
 X = 16 -- Choose a coordinate where people can't see you, choose big ammount like 150.
@@ -8,7 +8,7 @@ Y = 10 -- Choose a coordiante where people can't see you, choose big ammount lik
 pokecenter_Name = "Blackthorn City Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
 
 function onStart()
-    log("***Starting bot***")
+    log("***Starting Defence EV Training***")
 end
 
 function onPathAction()
@@ -31,7 +31,7 @@ function onPathAction()
 end
 
 function onBattleAction()
-    if not isOpponentShiny() and not isOpponentRare() then
+    if not isOpponentShiny() and not isOpponentRare() and isOpponentEffortValue("DEF") then
         return attack() or sendAnyPokemon() or run()
     else
         return useItem("Ultra Ball") or useItem("Great Ball") or useItem("Poke Ball") or sendAnyPokemon()

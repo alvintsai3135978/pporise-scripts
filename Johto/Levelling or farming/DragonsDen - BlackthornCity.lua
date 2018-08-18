@@ -1,10 +1,10 @@
-name = "Level Up: Route 45"
+name = "Level Up: Dragons Den"
 author = "Tester"
-description = [[This script will catch shiny or rare Pokemon and will Level up first Pokemon of your team in Route 45.]]
+description = [[This script will catch shiny or rare Pokemon and will Level up first Pokemon of your team in Dragons Den.]]
 
-mpaName = "Route 45" -- Change map name as you want.
-X = 16 -- Choose a coordinate where people can't see you, choose big ammount like 150.
-Y = 10 -- Choose a coordiante where people can't see you, choose big ammount like 150.
+mpaName = "Dragons Den" -- Change map name as you want.
+X = 25 -- Choose a coordinate where people can't see you, choose big ammount like 150.
+Y = 8 -- Choose a coordiante where people can't see you, choose big ammount like 150.
 pokecenter_Name = "Blackthorn City Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
 
 function onStart()
@@ -16,12 +16,8 @@ function onPathAction()
      if getMapName() != mpaName then
         return teleportTo(mpaName, X, Y) --out of other player's sight :D so they can't report about us xD
      elseif getMapName() == mpaName then
-     	if not isInBattle() then
-			log("Starting Battle..")
-			--                 X1	X2	Y
-			return moveLinearX(16, 20, 10, "battle") -- Change "battle" to "surf battle" if you want start surf battle but I will not suggest you to do that.
-		end
-     	  	--return startBattle() -- you can choose startSurfBattle() to start surf battle :D
+		log("Starting Battle..")
+		return startSurfBattle() -- you can choose startSurfBattle() to start surf battle :D
      end
   else
      if getMapName() != pokecenter_Name then

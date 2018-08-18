@@ -3,8 +3,8 @@ author = "Tester"
 description = [[This script will catch shiny or rare Pokemon and will Level up first Pokemon of your team in Safari Zone of Kanto.]]
 
 mpaName = "Safari Zone" -- Change map name as you want.
-X = 293 -- Choose a coordinate where people can't see you, choose big ammount like 150.
-Y = 285 -- Choose a coordiante where people can't see you, choose big ammount like 150.
+X = 90 -- Choose a coordinate where people can't see you, choose big ammount like 150.
+Y = 85 -- Choose a coordiante where people can't see you, choose big ammount like 150.
 pokecenter_Name = "Fuchsia City Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
 
 function onStart()
@@ -16,8 +16,12 @@ function onPathAction()
      if getMapName() != mpaName then
         return teleportTo(mpaName, X, Y) --out of other player's sight :D so they can't report about us xD
      elseif getMapName() == mpaName then
-     	  	log("Starting Battle..")
-     	  	return startBattle() -- you can choose startSurfBattle() to start surf battle :D
+     	if not isInBattle() then
+			log("Starting Battle..")
+			--                 X1	X2	Y
+			return moveLinearX(90, 94, 85, "battle")
+		end
+     	  	--return startBattle() -- you can choose startSurfBattle() to start surf battle :D
      end
   else
     return teleportTo(pokecenter_Name, 19, 14)

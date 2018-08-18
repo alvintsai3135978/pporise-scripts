@@ -3,9 +3,9 @@ author = "Tester"
 description = [[This script will catch shiny or rare Pokemon and will Level up first Pokemon of your team in Route 35.]]
 
 mpaName = "Route 35" -- Change map name as you want.
-X = 160 -- Choose a coordinate where people can't see you, choose big ammount like 150.
-Y = 26 -- Choose a coordiante where people can't see you, choose big ammount like 150.
-pokecenter_Name = "Route 3 Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
+X = 34 -- Choose a coordinate where people can't see you, choose big ammount like 150.
+Y = 34 -- Choose a coordiante where people can't see you, choose big ammount like 150.
+pokecenter_Name = "Goldenrod City Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
 
 function onStart()
     log("***Starting bot***")
@@ -16,8 +16,12 @@ function onPathAction()
      if getMapName() != mpaName then
         return teleportTo(mpaName, X, Y) --out of other player's sight :D so they can't report about us xD
      elseif getMapName() == mpaName then
-     	  	log("Starting Battle..")
-     	  	return startBattle() -- you can choose startSurfBattle() to start surf battle :D
+     	if not isInBattle() then
+			log("Starting Battle..")
+			--                 X1	X2	Y
+			return moveLinearX(34, 39, 34, "battle") -- Change "battle" to "surf battle" if you want start surf battle but I will not suggest you to do that.
+		end
+     	  	--return startBattle() -- you can choose startSurfBattle() to start surf battle :D
      end
   else
      if getMapName() != pokecenter_Name then

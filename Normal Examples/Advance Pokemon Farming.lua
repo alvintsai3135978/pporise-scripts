@@ -3,12 +3,12 @@ author = "Tester"
 description = [[This script will catch shiny or rare Pokemon and will catch some speciic Pokemon with desired natures and ivs in Speciic map.]]
 
 mpaName = "Power Plant" -- Change map name as you want.
-X = 100 -- Choose a coordinate where people can't see you, choose big ammount like 150.
-Y = 16 -- Choose a coordiante where people can't see you, choose big ammount like 150.
+X = 42 -- Choose a coordinate where people can't see you, choose big amount like 150.
+Y = 41 -- Choose a coordinate where people can't see you, choose big amount like 150.
 pokecenter_Name = "Route 10 Pokecenter" -- choose different pokecenter like Route 10 Pokecenter.
-weak_move = "Splash" -- 
+weak_move = "Splash" -- Change the move name with your first pokemon's weakest move.
 desiredNature = "Jolly" -- Change your desired nature from here if you want only one Pokemon with desired nature.
-desired_ivs = "Speed" -- Chage to your desired Stat name here which you want to get the iffort value(iv).
+desired_ivs = "Speed" -- Change to your desired Stat name here which you want to get the Individual Value(IV).
 
 local catchList = 
 {
@@ -37,8 +37,11 @@ function onPathAction()
      if getMapName() != mpaName then
         return teleportTo(mpaName, X, Y) --out of other player's sight :D so they can't report about us xD
      elseif getMapName() == mpaName then
-          log("Starting Battle..")
-          return startBattle() -- you can choose startSurfBattle() to start surf battle :D
+        if not isInBattle() then
+			log("Starting Battle..")
+			--                 X1	X2	Y
+			return moveLinearX(42, 46, 41, "battle")
+		end
      end
   else
     return teleportTo(pokecenter_Name, 19, 14)
@@ -60,10 +63,11 @@ end
 function PerFormActionsToGetOpponentIVS()
   if isOppenentDataReceived() then --isOppenentDataReceived() to check if we got the full data of our opponent.
     if getOpponenetNature() == desiredNature or desiredNatuers[getOpponenetNature()] then --getOpponenetNature() is used to get opponent Nature.
-      if getOpponentIV("Speed") >= 31 then --getOpponentIV("Stat_Name") to get our desired IV :D
+      if getOpponentIV(desired_ivs) >= 31 then --getOpponentIV("Stat_Name") to get our desired IV :D
         return useItem("Ultra Ball") or useItem("Great Ball") or useItem("Poke Ball") or sendAnyPokemon()
       end
     end
+	return run() or sendAnyPokemon() or attack()
   else
     return useMove(weak_move) or weakAttack() or run() or sendAnyPokemon()
   end
