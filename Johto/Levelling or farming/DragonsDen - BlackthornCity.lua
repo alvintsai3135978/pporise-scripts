@@ -17,7 +17,7 @@ function onPathAction()
         return teleportTo(mpaName, X, Y) --out of other player's sight :D so they can't report about us xD
      elseif getMapName() == mpaName then
 		log("Starting Battle..")
-		return startSurfBattle() -- you can choose startSurfBattle() to start surf battle :D
+		return  startSurfBattle()-- you can choose startSurfBattle() to start surf battle :D
      end
   else
      if getMapName() != pokecenter_Name then

@@ -20,7 +20,7 @@ function onPathAction()
 	   elseif getMapName() == mpaName then
 	        if not isMining() then
 	            log("Starting Mining..")
-	   	      	return startColoredRockMining(axe_name, "Red") --startAnyColorRockMining(axe_name) --You can also use startColoredRockMining(axe_name, "Color") put your desire color like Red, Blue, Green etc.
+	   	      	return startColoredRockMining(axe_name, true, "Red") --startAnyColorRockMining(axe_name) --You can also use startColoredRockMining(axe_name, "Color") put your desire color like Red, Blue, Green etc.
 	        end
 	   end
 	else
